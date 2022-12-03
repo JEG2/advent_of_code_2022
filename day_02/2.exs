@@ -2,6 +2,7 @@ IO.stream()
 |> Stream.map(&String.trim/1)
 |> Stream.map(fn round ->
   [them, me] = String.split(round, " ")
+
   {
     case them do
       "A" -> :rock
@@ -49,6 +50,7 @@ end)
       :paper -> 2
       :scissors -> 3
     end
+
   play_score + round_score
 end)
 |> Enum.sum()

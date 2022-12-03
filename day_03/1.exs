@@ -4,8 +4,9 @@ IO.stream()
   half = trunc(String.length(rucksack) / 2)
   compartment_1 = String.slice(rucksack, 0, half)
   compartment_2 = String.slice(rucksack, half, half)
+
   compartment_1
-  |> String.graphemes
+  |> String.graphemes()
   |> Enum.find(fn item -> String.contains?(compartment_2, item) end)
 end)
 |> Stream.map(fn
