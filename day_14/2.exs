@@ -33,8 +33,8 @@ cave
   {500, 0}
   |> Stream.iterate(fn {x, y} ->
     cond do
-      y + 1 > max_y ->
-        {:halt, cave}
+      y == max_y + 1 ->
+        {:cont, Map.put(cave, {x, y}, :sand)}
 
       is_nil(cave[{x, y + 1}]) ->
         {x, y + 1}
@@ -46,7 +46,11 @@ cave
         {x + 1, y + 1}
 
       true ->
-        {:cont, Map.put(cave, {x, y}, :sand)}
+        if x == 500 and y == 0 do
+          {:halt, Map.put(cave, {x, y}, :sand)}
+        else
+          {:cont, Map.put(cave, {x, y}, :sand)}
+        end
     end
   end)
   |> Enum.find(
