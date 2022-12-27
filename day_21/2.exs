@@ -61,11 +61,6 @@ unchanged_answers =
       right = Map.fetch!(answers, elem(expression, 2))
 
       if monkey == "root" do
-        # if left == trunc(left) do
-        #   IO.inspect({humn, left, right})
-        # end
-
-        # Map.put(answers, monkey, left == right)
         Map.put(answers, monkey, {left == trunc(left), humn, right - left})
       else
         answer = apply(Kernel, elem(expression, 0), [left, right])
